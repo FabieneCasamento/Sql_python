@@ -1,0 +1,47 @@
+
+termina pwd 
+acho o caminho do arquivo que desejo colocar no mysql, o .sql
+
+terminal =>sudo mysql -u root -p
+admin
+
+mysql> CREATE DATABASE clientes_banco_backup;
+Query OK, 1 row affected (1,32 sec)
+
+mysql> USE clientes_banco_backup;
+Database changed
+
+mysql> source /home/nomedoUsariodoComputador/Documentos/CRIACAO-HD/NOTA-PYTHON-LIRA/AulaGithub/Subir_hastag_aulas/remake_sql/banco_dados_backup/banco_clientes.sql
+
+mysql> exit
+
+
+sudo mysql -u root -p
+
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| banco_dados_teste     |
+| bdyoutube             |
+| clientes_aula         |
+| clientes_banco_backup |
+| information_schema    |
+| meu_banco_de_dados2   |
+| meu_novo              |
+| mysql                 |
+| novodados             |
+| pedido_aula           |
+| performance_schema    |
+| produtos_aula         |
+| questao               |
+| sys                   |
++-----------------------+
+14 rows in set (0,03 sec)
+
+mysql> 
+
+
+
+
+
