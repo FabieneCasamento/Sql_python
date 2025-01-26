@@ -1,0 +1,134 @@
+(Maq2) fabiene@Ins.....:$ conda env list
+# conda environments:
+#
+base                     /home/fabiene/anaconda3
+Maq2                  *  /home/fabiene/anaconda3/envs/Maq2
+RBA_est                  /home/fabiene/anaconda3/envs/RBA_est
+Robyn                    /home/fabiene/anaconda3/envs/Robyn
+Udemy                    /home/fabiene/anaconda3/envs/Udemy
+YouTube                  /home/fabiene/anaconda3/envs/YouTube
+
+(Maq2) fabiene@Ins.....:$ conda activate Udemy
+(Udemy) fabiene@Ins.....:$ pip install mysql-connector-python
+(Udemy) fabiene@Ins.....:$ sudo apt install mysql-server
+(Udemy) fabiene@Ins.....:$ sudo systemctl status mysql
+(Udemy) fabiene@Ins.....:$ sudo mysql
+
+mysql> 
+
+
+
+(Udemy) fabiene@Ins.....:$ sudo systemctl status mysql
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sat 2025-01-25 17:22:41 -03; 2min 44s ago
+    Process: 6520 ExecStartPre=/usr/share/mysql/mysql-systemd-start pre (code=exited, status=0/SUCCESS)
+   Main PID: 6553 (mysqld)
+     Status: "Server is operational"
+      Tasks: 38 (limit: 18714)
+     Memory: 364.7M
+        CPU: 2.692s
+     CGroup: /system.slice/mysql.service
+             └─6553 /usr/sbin/mysqld
+
+jan 25 17:22:40 Ins..... systemd[1]: Starting MySQL Community Server...
+jan 25 17:22:41 Ins..... systemd[1]: Started MySQL Community Server.
+(Udemy) fabiene@Ins.....:$ 
+(Udemy) fabiene@Ins.....:$ sudo systemctl start mysql
+
+(Udemy) fabiene@Ins.....:$ sudo mysql
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE USER 'fabiroot'localhost' IDENTIFIED BY '12';
+    -> GRANT ALL PRIVILEGES ON * .  *  TO fabiroot@'localhost';
+    -> FLUSH PRIVILEGES;
+    -> $mysql -u fabiroot -p
+    -> 
+
+
+
+    -> ALTER USER 'fabiroot'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''localhost' IDENTIFIED BY '12'
+GRANT ALL PRIVILEGES ON * .  *  TO fabiroot@'loca' at line 1
+mysql> 
+
+
+    -> CREATE USER'fabiroot'@Ins..... INDETIFIED BY '12'
+    -> GRANT ALL PRIVILEGES ON * .  *  TO 'fabiroot'@'Ins.....
+    '> FLUSH PRIVILEGES
+    '> $mysql -u fabiroot -p
+    '> Admin
+    '> 
+
+_ Não deu certo:
+***************************************************************************************************************
+******Verifique se o usuário fabiroot foi realmente criado no MySQL:******************************************
+sudo mysql -u root -p
+mysql> SELECT User, Host FROM mysql.user WHERE User = 'fabiroot';
+mysql> CREATE USER 'fabiroot'@'localhost' IDENTIFIED BY '12';
+Query OK, 0 rows affected (0,01 sec)
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'fabiroot'@'localhost';
+Query OK, 0 rows affected (0,01 sec)
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0,01 sec)
+mysql> $mysql -u fabiroot -p
+
+
+(Udemy) fabiene@Ins.....:$ sudo mysql -u root -p
+[sudo] senha para fabiene: 
+Enter password: Admin ou enter
+
+
+#----------------------------
+
+Verificar se foi criado o root
+(Udemy) fabiene@Ins.....:$ sudo mysql -u root -p
+mysql> SELECT User, Host FROM mysql.user WHERE User = 'fabiroot';
++----------+-----------+
+| User     | Host      |
++----------+-----------+
+| fabiroot | localhost |
++----------+-----------+
+1 row in set (0,00 sec)
+
+mysql> 
+
+Reiniciar o mysql
+sudo systemctl restart mysql
+
+
+# relembrando que a senha é '12',{ CREATE USER 'fabiroot'@'localhost' IDENTIFIED BY '12';}
+Vamos alterar agora
+(Udemy) fabiene@Ins.....:$ mysql -u fabiroot -p
+Enter password: 
+mysql> 
+mysql> ALTER USER 'fabiroot'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin';
+Query OK, 0 rows affected (0,01 sec)
+
+
+***************************************************************************************************************
+(Udemy) fabiene@Ins.....:$ mysql -u fabiroot -p
+senha admin
+***************************************************************************************************************
+mysql> SELECT User, Host FROM mysql.user WHERE User = 'fabiroot';
++----------+-----------+
+| User     | Host      |
++----------+-----------+
+| fabiroot | localhost |
++----------+-----------+
+1 row in set (0,00 sec)
+
+mysql> SELECT User, Host FROM mysql.user WHERE User = 'root';
++------+-----------+
+| User | Host      |
++------+-----------+
+| root | localhost |
++------+-----------+
+1 row in set (0,00 sec)
+
+mysql> SELECT User, Host FROM mysql.user WHERE User = 'fabi';
+Empty set (0,00 sec)
+
+
+
+
